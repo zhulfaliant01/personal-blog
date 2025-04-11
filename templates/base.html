@@ -6,11 +6,34 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Blog</title>
+        {% block title %}
+
+        {% endblock %}
         <link rel="stylesheet" href="{% static 'output.css' %}" />
     </head>
 
-    <body>
+    <body class="bg-[#343541] text-[#ececec] min-h-screen">
+        <nav class="bg-[#202123]  shadow-md">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <!-- Left Section: Logo & Search Bar -->
+                <div class="flex items-center gap-x-4 w-1/2">
+                    <!-- Logo -->
+                    <a href="{% url 'home' %}"
+                        class="text-2xl font-bold text-[#19c37d] hover:text-[#ececec] duration-200">CollectiveMind</a>
+                </div>
+                <!-- Right Section: Login and Sign In -->
+                {% if user.is_authenticated %}
+                <div class="flex items-center gap-x-4">
+                    <a href="{% url 'logout' %}" class="font-bold hover:text-[#19c37d] duration-200">Logout</a>
+                </div>
+                {% else %}
+                <div class="flex items-center gap-x-4">
+                    <a href="{% url 'login' %}" class="font-bold hover:text-[#19c37d] duration-200">Login</a>
+                    <a href="{% url 'register' %}" class="font-bold hover:text-[#19c37d] duration-200">Sign In</a>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
         {% block content %}
         {% endblock %}
     </body>

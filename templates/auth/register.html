@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-3xl mx-auto mt-8 mb-16 px-4 relative">
+
+    <div class="card bg-base-100 shadow-xl mt-16"> <!-- added margin top to prevent overlap -->
+        <div class="card-body">
+            <h1 class="text-3xl font-bold text-center mb-4">Register</h1>
+
+            <form method="POST" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Username -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text text-lg font-medium">Username</span>
+                    </label>
+                    <input type="text" name="username" placeholder="Ex : kosuram"
+                        class="input input-bordered input-primary w-full focus:ring-2 focus:ring-primary" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text text-lg font-medium">Email</span>
+                    </label>
+                    <input type="text" name="email" placeholder="Ex : kosuram@gmail.com"
+                        class="input input-bordered input-primary w-full focus:ring-2 focus:ring-primary" required>
+                </div>
+
+                <!-- Password -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text text-lg font-medium">Password</span>
+                    </label>
+                    <input type="password" name="password" placeholder="Ex : pocong123"
+                        class="input input-bordered input-primary w-full focus:ring-2 focus:ring-primary" required>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text text-lg font-medium">Confirm Password</span>
+                    </label>
+                    <input type="password" name="confirm_password" placeholder="Ex : pocong123"
+                        class="input input-bordered input-primary w-full focus:ring-2 focus:ring-primary" required>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit" class="btn w-full btn-primary flex items-center gap-2 px-6">
+                        <span>Register</span>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    {% if messages %}
+    <div id="alert-box" class="absolute top-0 left-0 right-0 transition-opacity duration-500">
+        {% for message in messages %}
+        <div class="alert alert-error shadow-lg mb-4 mx-auto max-w-2xl">
+            <div class="flex justify-center w-full">
+                <span>{{ message }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(() => {
+            const alertBox = document.getElementById('alert-box');
+            if (alertBox) {
+                alertBox.classList.add('opacity-0');
+                setTimeout(() => alertBox.remove(), 500);  // Optional: fully remove from DOM
+            }
+        }, 3000);  // fade after 3 seconds
+    </script>
+    {% endif %}
+</div>
+{% endblock %}

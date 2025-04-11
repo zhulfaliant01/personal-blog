@@ -1,5 +1,5 @@
-from django.db import models
 from bson import ObjectId
+from django.db import models
 
 
 def generate_object_id():

@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('blogs', '0001_initial'),
+        ("blogs", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='is_markdown',
+            model_name="post",
+            name="is_markdown",
             field=models.BooleanField(blank=True, null=True),
         ),
     ]
